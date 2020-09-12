@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          type="text/css"
+          href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="nav-bar"></div>
+    <div id="app">
+        <div class="cart">
+            <p>Cart({{ cart.length }})</p>
+        </div>
+        <!--here we are listening for events named add-to-cart and then running
+        the updateCart function-->
+        <product :premium="premium"
+                 @add-to-cart="updateCart"></product>
+        <!--using product component defined in main.js (we can do it more than once
+        and don't have to repeat ourselves)-->
+        <product :premium="premium"></product>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

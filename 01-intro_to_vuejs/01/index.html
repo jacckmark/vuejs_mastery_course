@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          type="text/css"
+          href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="nav-bar"></div>
+    <div id="app">
+        <div class="product">
+            <div class="product-image">
+                <!--binding dynamic value to src attribute-->
+                <img v-bind:src="image"
+                     alt="">
+            </div>
+            <div class="product-info">
+                <h1>{{title}}</h1>
+                <!--conditionally displating data-->
+                <p v-if="inStock">In stock</p>
+                <p v-else
+                   :class="{'strikeThroughText': !inStock}">Out of stock</p>
+                <!--conditionally showing data (changing visibility)-->
+                <p v-show="!inStock">test</p>
+                <ul>
+                    <!--looping trough array data-->
+                    <li v-for="detail in details"
+                        :key="detail.someImaginaryId">{{detail}}</li>
+                </ul>
+                <!--we can listen for mouseover event and then trigger the method,
+                also we can dynamically bind syle using v-bind:style -->
+                <div v-for="variant in variants"
+                     :key="variant.variantId"
+                     class="color-box"
+                     @mouseover="updateProduct(variant.variantImage)"
+                     :style="{backgroundColor:variant.variantColor}">
+                </div>
+                <!--we can add method which will be run when the button will be clicked-->
+                <!--we can also add the css class conditionally to element using
+                ternary operator-->
+                <button v-on:click="addToCart"
+                        :class="[inStock ? '' : 'disabledButton']"
+                        :disabled="!inStock">Add to cart</button>
+                <!--we can also use the shorthand expression and instead of v-on:click write @click-->
+                <button @click="removeFromCart">Remove from cart</button>
+                <div class="cart">
+                    <!--here we are binding to the whole style object thus setting multiple styles 
+                        for our paragraph (it is also possible to use two or more style objects
+                    then we would pass them as array :style="[cartStyle1, cartStyle2, ...]"-->
+                    <p :style="cartStyleObj">Cart {{cart}}</p>
+                </div>
+            </div>
+            <p>{{description}}</p>
+        </div>
+    </div>
+    <!--this is how we can install vuejs if we dont feel like using npm-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
