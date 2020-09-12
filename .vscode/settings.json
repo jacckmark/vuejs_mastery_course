@@ -1,0 +1,11 @@
+{
+  "vetur.validation.template": false,
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "eslint.validate": ["vue", "html", "javascript"],
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": true, "source.fixAll": true },
+  "editor.formatOnSave": true,
+  "prettier.singleQuote": false,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.semi": false
+}
