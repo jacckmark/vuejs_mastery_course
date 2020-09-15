@@ -1,11 +1,38 @@
 {
-  "vetur.validation.template": false,
-  "vetur.format.defaultFormatter.js": "prettier-eslint",
   "eslint.validate": ["vue", "html", "javascript"],
-  "editor.codeActionsOnSave": { "source.fixAll.eslint": true, "source.fixAll": true },
+  "eslint.run": "onSave",
+  "editor.codeActionsOnSave": { "source.fixAll": true },
   "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "files.insertFinalNewline": true,
   "prettier.singleQuote": false,
   "prettier.tabWidth": 2,
+  "prettier.endOfLine": "auto",
   "prettier.useTabs": false,
-  "prettier.semi": false
+  "prettier.semi": false,
+  "prettier.trailingComma": "all",
+  "vetur.validation.script": true,
+  "vetur.validation.template": true,
+  "vetur.format.styleInitialIndent": true,
+  "vetur.format.scriptInitialIndent": true,
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "vetur.format.defaultFormatter.html": "prettier",
+  "vetur.format.options.tabSize": 2,
+  "vetur.format.options.useTabs": false,
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "tabWidth": 2,
+      "useTabs": false,
+      "singleQuote": false,
+      "arrow-parent": "always",
+      "jsxBracketSameLine": true,
+      "vueIndentScriptAndStyle": true
+    }
+  },
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "javascript.format.enable": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
