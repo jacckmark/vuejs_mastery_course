@@ -1,5 +1,8 @@
 <template>
-  <div class="icon-wrapper" v-html="svg"></div>
+  <div class="icon-wrapper" v-html="svg">
+    <!-- slots give us option to get the content within component tag and use them -->
+    <slot></slot>
+  </div>
 </template>
 
 <script>
