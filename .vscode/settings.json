@@ -1,6 +1,6 @@
 {
   "eslint.validate": ["vue", "html", "javascript"],
-  "eslint.run": "onSave",
+  "eslint.run": "onType",
   "editor.codeActionsOnSave": { "source.fixAll": true },
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
@@ -9,7 +9,7 @@
   "prettier.tabWidth": 2,
   "prettier.endOfLine": "auto",
   "prettier.useTabs": false,
-  "prettier.semi": false,
+  "prettier.semi": true,
   "prettier.trailingComma": "all",
   "vetur.validation.script": true,
   "vetur.validation.template": true,

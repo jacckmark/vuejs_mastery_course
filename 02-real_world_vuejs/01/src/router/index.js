@@ -13,9 +13,10 @@ const routes = [
     component: EventList,
   },
   {
-    path: "/event",
+    path: "/event/:id",
     name: "event-show",
     component: EventShow,
+    props: true,
   },
   {
     path: "/event/create",
@@ -25,6 +26,8 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  // this will remove hash from our page url (no more localhost:8080/#/user)
+  mode: "history",
   routes,
 });
 
