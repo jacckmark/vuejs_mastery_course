@@ -1,7 +1,9 @@
 <template>
   <div id="nav" class="nav">
+    <!-- when using router links we can use exact url or the name (here using url) -->
     <router-link to="/" class="brand">Real World Events</router-link>
     <nav>
+      <!-- when using router links we can use exact url or the name (here using route name) -->
       <router-link :to="{ name: 'event-list' }">List</router-link>
       <span> | </span>
       <router-link :to="{ name: 'event-create' }">Create</router-link>

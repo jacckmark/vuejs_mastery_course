@@ -1,10 +1,12 @@
 <template>
   <div id="app">
+    <!-- using our own component -->
     <NavBar />
     <router-view />
   </div>
 </template>
 <script>
+  // importing the component in order to use it later inside html template
   import NavBar from "@/components/NavBar.vue";
   export default {
     components: { NavBar },

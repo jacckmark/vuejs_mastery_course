@@ -16,6 +16,8 @@ const routes = [
     path: "/event/:id",
     name: "event-show",
     component: EventShow,
+    // thanks to this the id passed as the route parameter can be captured by component
+    // as the props and used (we can also omit it and use this.$route.params.id)
     props: true,
   },
   {
