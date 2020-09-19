@@ -11,7 +11,7 @@
   "prettier.useTabs": false,
   "prettier.semi": true,
   "prettier.trailingComma": "all",
-  "prettier.arrowParens": "avoid",
+  "prettier.arrowParens": "always",
   "vetur.validation.script": true,
   "vetur.validation.template": false,
   "vetur.format.styleInitialIndent": true,
@@ -35,6 +35,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-"editor.defaultFormatter": "esbenp.prettier-vscode",
-"git.ignoreLimitWarning": true
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "git.ignoreLimitWarning": true
 }

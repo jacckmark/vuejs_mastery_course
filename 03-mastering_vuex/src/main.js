@@ -16,7 +16,7 @@ import camelCase from "lodash/camelCase";
 // with 'Base' (https://vuejs.org/v2/guide/components-registration.html#Automatic-Global-Registration-of-Base-Components)
 
 const requireComponent = require.context("./components", false, /Base[A-Z]\w+\.(vue|js)$/);
-requireComponent.keys().forEach((fileName) => {
+requireComponent.keys().forEach(fileName => {
   const componentConfig = requireComponent(fileName);
   const componentName = upperFirst(
     camelCase(
@@ -34,5 +34,5 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  render: h => h(App),
 }).$mount("#app");
