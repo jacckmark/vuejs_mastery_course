@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import EventCreate from "../views/EventCreate.vue";
 import EventList from "../views/EventList.vue";
 import EventShow from "../views/EventShow.vue";
+import UserData from "../views/UserData.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     path: "/event/create",
     name: "event-create",
     component: EventCreate,
+  },
+  {
+    path: "/user/data",
+    name: "user-data",
+    component: UserData,
   },
 ];
 

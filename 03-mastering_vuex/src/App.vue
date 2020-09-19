@@ -2,7 +2,10 @@
   <div id="app">
     <!-- using our own component -->
     <NavBar />
-    <router-view />
+    <!-- this attribute :key.. ensures that components served within router view
+    will be reoladed when the url changes (this changes include changes in url query
+    parameters) -->
+    <router-view :key="$route.fullPath" />
   </div>
 </template>
 <script>

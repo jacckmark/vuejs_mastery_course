@@ -13,10 +13,13 @@ import camelCase from "lodash/camelCase";
 
 // we can also use something called Automatic Global Registration of Base Components
 // which will allow us to register globally all components which have name starting
-// with 'Base' (https://vuejs.org/v2/guide/components-registration.html#Automatic-Global-Registration-of-Base-Components)
-
-const requireComponent = require.context("./components", false, /Base[A-Z]\w+\.(vue|js)$/);
-requireComponent.keys().forEach(fileName => {
+// with 'Base'
+const requireComponent = require.context(
+  "./components",
+  false,
+  /Base[A-Z]\w+\.(vue|js)$/,
+);
+requireComponent.keys().forEach((fileName) => {
   const componentConfig = requireComponent(fileName);
   const componentName = upperFirst(
     camelCase(
@@ -34,5 +37,5 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount("#app");

@@ -10,6 +10,7 @@
   "prettier.endOfLine": "auto",
   "prettier.useTabs": false,
   "prettier.semi": true,
+  "prettier.printWidth": 80,
   "prettier.trailingComma": "all",
   "prettier.arrowParens": "always",
   "vetur.validation.script": true,

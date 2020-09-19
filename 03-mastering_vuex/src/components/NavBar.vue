@@ -7,6 +7,8 @@
       <router-link :to="{ name: 'event-list' }">List</router-link>
       <span> | </span>
       <router-link :to="{ name: 'event-create' }">Create</router-link>
+      <span> | </span>
+      <router-link :to="{ name: 'user-data' }">User Data</router-link>
     </nav>
   </div>
 </template>

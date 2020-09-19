@@ -3,7 +3,9 @@
     <div class="event-header">
       <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
       <h1 class="title">{{ event.title }}</h1>
-      <h5>Organized by {{ event.organizer }}</h5>
+      <h5>
+        Organized by {{ event.organizer ? event.organizer.name : "none" }}
+      </h5>
       <h5>Category: {{ event.category }}</h5>
     </div>
     <BaseIcon name="map"><h2>Location</h2></BaseIcon>
@@ -29,23 +31,23 @@
 </template>
 
 <script>
-  import EventService from "@/services/EventService.js";
+  import { mapState, mapActions } from "vuex";
   export default {
     props: ["id"],
-    data() {
-      return {
-        event: {},
-      };
-    },
     created() {
-      EventService.getEvent(this.id)
-        .then((response) => {
-          this.event = response.data;
-        })
-        .catch((error) => {
-          console.log(`There was an error: ${error.response}`);
-        });
+      // without mapActions we would use action fetchEvent like this:
+      //   this.$store.dispatch("event/fetchEvent", this.id);
+      // thanks to the mapActions we can write it like this
+      this.fetchEvent(this.id);
     },
+    computed: mapState({
+      event: (state) => state.event.event,
+    }),
+    // we can write it in two ways (the first one is usefull especially when we
+    // have more than one namespaced action which needs importing, first argument
+    // is the namespace and second the array of actions to map)
+    methods: mapActions("event", ["fetchEvent"]),
+    // methods: mapActions(["event/fetchEvent"]),
   };
 </script>
 
