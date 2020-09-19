@@ -12,12 +12,6 @@ you have to install globally the json-server library and run
 json-server --watch db.json --port 3002
 ```
 
-you have to install globally the json-server library and run
-
-```
-json-server --watch db.json --port 3002
-```
-
 in order to serve the db.json file and simulate the real server
 
 ### Compiles and hot-reloads for development
