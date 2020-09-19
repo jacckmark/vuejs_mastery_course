@@ -1,15 +1,9 @@
-# 03-Mastering Vuex
+# 03-Next-level Vue
 
 ## Project setup
 
 ```
 npm install
-```
-
-you have to install globally the json-server library and run
-
-```
-json-server --watch db.json --port 3002
 ```
 
 you have to install globally the json-server library and run
