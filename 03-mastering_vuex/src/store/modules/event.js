@@ -28,26 +28,46 @@ export const mutations = {
 
 export const actions = {
   // commit is an context object and event in this example is an payload
-  createEvent({ commit }, event) {
+  createEvent({ commit, dispatch }, event) {
     // here action is using the mutation in order to change (mutate) the events state
-    return EventService.postEvent(event).then(() => {
-      commit("ADD_EVENT", event);
-    });
+    return EventService.postEvent(event)
+      .then(() => {
+        commit("ADD_EVENT", event);
+        const notification = {
+          type: "success",
+          message: "Your event has been created!",
+        };
+        dispatch("notification/add", notification, { root: true });
+      })
+      .catch((error) => {
+        const notification = {
+          type: "error",
+          message: `There was a problem creating your event: ${error.message}`,
+        };
+        dispatch("notification/add", notification, { root: true });
+        throw error;
+      });
   },
   // we can also use the store to handle data from service (here events list)
   // store is doing request using EventService and storing the result data inside
   // events array
-  fetchEvents({ commit }, { perPage, page }) {
+  fetchEvents({ commit, dispatch }, { perPage, page }) {
     EventService.getEvents(perPage, page)
       .then((response) => {
         commit("SET_EVENTS_TOTAL", response.headers["x-total-count"]);
         commit("SET_EVENTS", response.data);
       })
       .catch((error) => {
-        console.log(`There was an error: ${error}`);
+        const notification = {
+          type: "error",
+          message: `There was a problem fetching events: ${error.message}`,
+        };
+        // root set to true will allow our dispacher (dispaching method) to go to
+        // root store, find our notification state and run add method
+        dispatch("notification/add", notification, { root: true });
       });
   },
-  fetchEvent({ commit, getters }, id) {
+  fetchEvent({ commit, getters, dispatch }, id) {
     // here we are using the getters from store and we try to access the event
     // with given id, if we have it we don't do a request, else we do a regular
     // request to the API
@@ -60,7 +80,11 @@ export const actions = {
           commit("SET_EVENT", response.data);
         })
         .catch((error) => {
-          console.log(`There was an error: ${error.response}`);
+          const notification = {
+            type: "error",
+            message: `There was a problem fetching event: ${error.message}`,
+          };
+          dispatch("notification/add", notification, { root: true });
         });
     }
   },

@@ -2,6 +2,7 @@
   <div id="app">
     <!-- using our own component -->
     <NavBar />
+    <NotificationContainer />
     <!-- this attribute :key.. ensures that components served within router view
     will be reoladed when the url changes (this changes include changes in url query
     parameters) -->
@@ -11,8 +12,9 @@
 <script>
   // importing the component in order to use it later inside html template
   import NavBar from "@/components/NavBar.vue";
+  import NotificationContainer from "@/components/NotificationContainer.vue";
   export default {
-    components: { NavBar },
+    components: { NavBar, NotificationContainer },
   };
 </script>
 <style>

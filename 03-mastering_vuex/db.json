@@ -231,20 +231,6 @@
       "date": "",
       "time": "5:00",
       "attendees": []
-    },
-    {
-      "id": 817509,
-      "category": "animal welfare",
-      "organizer": {
-        "id": "abc123",
-        "name": "Adam Jahr"
-      },
-      "title": "qwr wq eqwe",
-      "description": "ewqe qe qe wqeqw ",
-      "location": "",
-      "date": "",
-      "time": "",
-      "attendees": []
     }
   ]
 }
