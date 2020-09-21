@@ -62,6 +62,9 @@ export const actions = {
     if (event) {
       commit("SET_EVENT", event);
     } else {
+      // this is important we have to return the result of this call otherwise
+      // the call will return immediately (thanks to this we can call then on
+      // result of this call)
       return EventService.getEvent(id)
         .then((response) => {
           commit("SET_EVENT", response.data);

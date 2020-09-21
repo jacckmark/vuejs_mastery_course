@@ -61,10 +61,15 @@ export const actions = {
     let event = getters.getEventById(id);
     if (event) {
       commit("SET_EVENT", event);
+      // this line and line 69 and 72 is crucial because without them we would not
+      // return the data when running the fetchEvent action, thus passing event within
+      // router beforeEnter method would be not possible
+      return event;
     } else {
       return EventService.getEvent(id)
         .then((response) => {
           commit("SET_EVENT", response.data);
+          return response.data;
         })
         .catch((error) => {
           const notification = {

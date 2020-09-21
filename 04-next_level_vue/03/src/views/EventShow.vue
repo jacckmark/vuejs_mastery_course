@@ -31,21 +31,13 @@
 </template>
 
 <script>
-  import { mapState } from "vuex";
-  import NProgress from "nprogress/nprogress.js";
-  import store from "@/store";
   export default {
-    props: ["id"],
-    beforeRouteEnter(to, from, next) {
-      NProgress.start();
-      store.dispatch("event/fetchEvent", to.params.id).then(() => {
-        NProgress.done();
-        next();
-      });
+    props: {
+      event: {
+        type: Object,
+        require: true,
+      },
     },
-    computed: mapState({
-      event: (state) => state.event.event,
-    }),
   };
 </script>
 
