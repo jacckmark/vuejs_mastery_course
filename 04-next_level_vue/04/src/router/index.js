@@ -3,7 +3,8 @@ import VueRouter from "vue-router";
 import EventCreate from "../views/EventCreate.vue";
 import EventList from "../views/EventList.vue";
 import EventShow from "../views/EventShow.vue";
-import UserData from "../views/UserData.vue";
+import NetworkIssue from "../views/NetworkIssue.vue";
+import NotFound from "../views/NotFound.vue";
 import NProgress from "nprogress";
 import store from "@/store";
 
@@ -14,24 +15,7 @@ const routes = [
     path: "/",
     name: "event-list",
     component: EventList,
-  },
-  {
-    path: "/event/:id",
-    name: "event-show",
-    component: EventShow,
     props: true,
-    // this will run before this route gets loaded
-    beforeEnter: (to, from, next) => {
-      // here we are running the store fetchEvent which will either fetch the
-      // info from store or get it from database (using our EventService)
-      store.dispatch("event/fetchEvent", to.params.id).then((event) => {
-        // we are passing the props (event obj from store) to the component, this
-        // way we don't have to access store inside component, because we already
-        // have these data
-        to.params.event = event;
-        next();
-      });
-    },
   },
   {
     path: "/event/create",
@@ -39,9 +23,50 @@ const routes = [
     component: EventCreate,
   },
   {
-    path: "/user/data",
-    name: "user-data",
-    component: UserData,
+    path: "/event/:id",
+    name: "event-show",
+    component: EventShow,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      store
+        .dispatch("event/fetchEvent", to.params.id)
+        .then((event) => {
+          to.params.event = event;
+          next();
+        })
+        .catch((error) => {
+          // we are redirecting user to 404 only if there is a 404 error, if not
+          // then this is probably problem with network, so we display the network
+          // issue page
+          if (error.response && error.response.status == 404) {
+            // we are catching when number of event does not exist, redirecting
+            // to the 404 and passing the event as props (in order to display info
+            // like: 'The event you are looking for is not here')
+            next({ name: "404", params: { resource: "event" } });
+          } else {
+            next({ name: "network-issue" });
+          }
+        });
+    },
+  },
+  {
+    path: "/404",
+    name: "404",
+    component: NotFound,
+    props: true,
+  },
+  {
+    path: "/network-issue",
+    name: "network-issue",
+    component: NetworkIssue,
+  },
+  {
+    // this will redirect you to the 404 page every time no route from router
+    // routes gets matched
+    path: "*",
+    // we have to specify missing resource (here page), to display it on 404 page
+    // ('The page you are looking for is not here')
+    redirect: { name: "404", params: { resource: "page" } },
   },
 ];
 
@@ -50,7 +75,6 @@ const router = new VueRouter({
   routes,
 });
 
-// we start the progress bar on every route we try to enter
 router.beforeEach((to, from, next) => {
   NProgress.start();
   next();
