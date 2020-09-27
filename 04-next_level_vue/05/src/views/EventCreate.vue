@@ -1,7 +1,5 @@
 <template>
   <form @submit.prevent="createEvent">
-    <!-- blur event will trigger the vuelidate library method which will change
-      the field dirty state to true (thus making the field touched/dirty) -->
     <BaseSelect
       label="Select a category"
       :options="categories"
@@ -9,20 +7,13 @@
       @blur="!$v.event.category.$touch()"
       :class="{ error: $v.event.category.$error }"
     />
-    <!-- adding the wrapping template with v-if will result in showing the error
-    only when there is the issue with the category (so this will prevent error
-    message from showing when user just loaded the page) -->
     <template v-if="$v.event.category.$error">
-      <!-- we have the access to $v object which is holding info about all fields that
-    should be validated (these fields are defined inside validations section) -->
       <p v-if="!$v.event.category.required" class="errorMessage">
         Category is required
       </p>
     </template>
 
     <h3>Name & describe your event</h3>
-    <!-- here we are binding to the value from emmited within BaseInput event
-    using v-model -->
     <BaseInput
       type="text"
       placeholder="Add a title"
@@ -140,7 +131,6 @@
     },
     methods: {
       createEvent() {
-        // this will ensure that every field in our form is dirty
         this.$v.$touch();
         if (!this.$v.$invalid) {
           NProgress.start();

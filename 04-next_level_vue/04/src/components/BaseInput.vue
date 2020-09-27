@@ -4,7 +4,13 @@
     <!-- using v-bind with inheritAttrs will give us an option to pass the
     attrs defined on component to the children (but not all using v-bind defines
     which child should get the attributes) -->
-    <input type="text" :value="value" @input="updateValue" v-bind="$attrs" />
+    <input
+      type="text"
+      :value="value"
+      @input="updateValue"
+      v-bind="$attrs"
+      v-on="listeners"
+    />
   </div>
 </template>
 
@@ -20,6 +26,20 @@
         default: "",
       },
       value: [String, Number],
+    },
+    computed: {
+      // here we have added the listeners method which will allow us to use
+      // $listeners (so we can still hear events from parent scope), but this
+      // will also resolve problem with conflicting values of our input (we are
+      // simply overwriting them with result from updatedValue method). Our
+      // problem with value of this input occurs because the @input is conflicting
+      // with input from $listeners
+      listeners() {
+        return {
+          ...this.$listeners,
+          input: this.updateValue,
+        };
+      },
     },
     methods: {
       updateValue(event) {

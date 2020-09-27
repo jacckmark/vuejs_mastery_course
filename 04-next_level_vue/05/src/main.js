@@ -7,9 +7,11 @@ import camelCase from "lodash/camelCase";
 import "nprogress/nprogress.css";
 import "@hokify/vuejs-datepicker/dist/vuejs-datepicker.css";
 import Vuelidate from "vuelidate";
+import ExclamationFilter from "./filters/exclamation_text";
+// here we are importing and globally registering the filter (we also name it
+// exclamation)
+Vue.filter("exclamation", ExclamationFilter);
 
-// adding validating library to our app (this will allow us to access vuelidate
-// from every component within our application)
 Vue.use(Vuelidate);
 
 const requireComponent = require.context(

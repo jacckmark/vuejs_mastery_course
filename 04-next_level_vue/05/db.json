@@ -301,6 +301,20 @@
       "date": "2020-09-01T10:34:00.000Z",
       "time": "6:00",
       "attendees": []
+    },
+    {
+      "id": 6691896,
+      "category": "nature",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
+      "title": "fdfdsfs",
+      "description": " fdf",
+      "location": "sasa",
+      "date": "2020-09-10T10:56:00.000Z",
+      "time": "2:00",
+      "attendees": []
     }
   ]
 }
